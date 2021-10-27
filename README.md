@@ -2,17 +2,34 @@
 
 ## Notion
 
-## Technology Wiki
+### Technology Wiki
 
 > Technology Knowledge Base
 
-### DevOps & Infrastructure
+#### DevOps & Infrastructure
 
-### Programming
+Item                              | URL
+--------------------------------- | -------------
+AWS                               | [access](https://portswigger.net/web-security)
+Ansible                           | [access](https://portswigger.net/web-security)
+Kubernetes                        | [access](https://portswigger.net/web-security)
+Helm                              | [access](https://portswigger.net/web-security)
+Linux                             | [access](https://portswigger.net/web-security)
+Terraform                         | [access](https://portswigger.net/web-security)
+Vault                             | [access](https://portswigger.net/web-security)
 
-### Troubleshooting
+#### Programming
 
-### Databases
+Item                              | URL
+--------------------------------- | -------------
+Design Patterns                   | [access](https://portswigger.net/web-security)
+ShellScript                       | [access](https://portswigger.net/web-security)
+Python                            | [access](https://portswigger.net/web-security)
+Go                                | [access](https://portswigger.net/web-security)
+
+#### Troubleshooting
+
+#### Databases
 
 Item                              | URL
 --------------------------------- | -------------
@@ -21,7 +38,7 @@ Redis                             | [access](https://portswigger.net/web-securit
 MongoDB                           | [access](https://portswigger.net/web-security)
 Postgres                          | [access](https://portswigger.net/web-security)
 
-### CI/CD & Pipeline
+#### CI/CD & Pipeline
 
 Item                              | URL
 --------------------------------- | -------------
@@ -29,3 +46,8 @@ Jenkins                           | [access](https://portswigger.net/web-securit
 GoCD                              | [access](https://portswigger.net/web-security)
 GitlabCI                          | [access](https://portswigger.net/web-security)
 Github actions                    | [access](https://portswigger.net/web-security)
+
+
+## Tools
+
+### k3d
