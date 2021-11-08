@@ -51,3 +51,9 @@ Github actions                    | [access](https://portswigger.net/web-securit
 ## :bookmark: Tools
 
 ### k3d
+
+### curl
+
+### httpie
+
+### k6s
