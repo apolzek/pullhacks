@@ -125,4 +125,3 @@ node.ingest: true
 # Referências
 
 [Elasticsearch - Definições, Arquitetura e Boas Práticas](https://www.youtube.com/watch?v=-fAq1B81nRI)
-

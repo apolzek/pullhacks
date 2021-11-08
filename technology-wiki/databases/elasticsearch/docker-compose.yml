@@ -1,70 +1,56 @@
-version: '2.2'
+version: '3'
 services:
-  es01:
-    image: docker.elastic.co/elasticsearch/elasticsearch:7.15.1
-    container_name: es01
+  elasticsearch:
+    image: docker.elastic.co/elasticsearch/elasticsearch:7.3.1
+    container_name: elasticsearch
     environment:
-      - node.name=es01
-      - cluster.name=es-docker-cluster
-      - discovery.seed_hosts=es02,es03
-      - cluster.initial_master_nodes=es01,es02,es03
+      - node.name=ws-es-node
+      - discovery.type=single-node
+      - cluster.name=ws-es-data-cluster
       - bootstrap.memory_lock=true
-      - "ES_JAVA_OPTS=-Xms512m -Xmx512m"
+      - "ES_JAVA_OPTS=-Xms1024m -Xmx1024m"
+      # - xpack.security.enabled='false'
+      # - xpack.monitoring.enabled='false'
+      # - xpack.watcher.enabled='false'
+      # - xpack.ml.enabled='false'
+      # - http.cors.enabled='true'
+      # - http.cors.allow-origin="*"
+      # - http.cors.allow-methods=OPTIONS, HEAD, GET, POST, PUT, DELETE
+      # - http.cors.allow-headers=X-Requested-With,X-Auth-Token,Content-Type, Content-Length
+      - logger.level=debug
     ulimits:
       memlock:
         soft: -1
         hard: -1
     volumes:
-      - data01:/usr/share/elasticsearch/data
+      - vibhuviesdata:/usr/share/elasticsearch/data
     ports:
       - 9200:9200
+      - 9300:9300
     networks:
-      - elastic
-  es02:
-    image: docker.elastic.co/elasticsearch/elasticsearch:7.15.1
-    container_name: es02
+      - esnet
+  kibana:
+    image: docker.elastic.co/kibana/kibana:7.3.1
+    container_name: kibana
     environment:
-      - node.name=es02
-      - cluster.name=es-docker-cluster
-      - discovery.seed_hosts=es01,es03
-      - cluster.initial_master_nodes=es01,es02,es03
-      - bootstrap.memory_lock=true
-      - "ES_JAVA_OPTS=-Xms512m -Xmx512m"
-    ulimits:
-      memlock:
-        soft: -1
-        hard: -1
-    volumes:
-      - data02:/usr/share/elasticsearch/data
+      SERVER_NAME: 127.0.0.1
+      ELASTICSEARCH_HOSTS: http://elasticsearch:9200
+      # XPACK_GRAPH_ENABLED: false
+      # XPACK_ML_ENABLED: false
+      # XPACK_REPORTING_ENABLED: false
+      # XPACK_SECURITY_ENABLED: false
+      # XPACK_WATCHER_ENABLED: false
+    ports:
+      - "5601:5601"
     networks:
-      - elastic
-  es03:
-    image: docker.elastic.co/elasticsearch/elasticsearch:7.15.1
-    container_name: es03
-    environment:
-      - node.name=es03
-      - cluster.name=es-docker-cluster
-      - discovery.seed_hosts=es01,es02
-      - cluster.initial_master_nodes=es01,es02,es03
-      - bootstrap.memory_lock=true
-      - "ES_JAVA_OPTS=-Xms512m -Xmx512m"
-    ulimits:
-      memlock:
-        soft: -1
-        hard: -1
-    volumes:
-      - data03:/usr/share/elasticsearch/data
-    networks:
-      - elastic
-
+      - esnet
+    depends_on:
+      - elasticsearch
+    restart: "unless-stopped"
+    
 volumes:
-  data01:
-    driver: local
-  data02:
-    driver: local
-  data03:
+  vibhuviesdata:
     driver: local
 
 networks:
-  elastic:
-    driver: bridge
+  esnet:
