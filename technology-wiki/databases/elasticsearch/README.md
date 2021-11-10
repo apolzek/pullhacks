@@ -131,11 +131,81 @@ Os principais arquivos de configuração são: *elasticsearch.yml* e *jvm.option
 
 ![https://media.giphy.com/media/4KEChFKWvCYOQBbngD/giphy.gif](https://media.giphy.com/media/4KEChFKWvCYOQBbngD/giphy.gif)
 
-Subir Elasticsearch usando Docker
+Subir Elasticsearch usando **Docker**
 
 ```bash
 # Docker
 docker run -p 9200:9200 -p 9300:9300 -e "discovery.type=single-node" docker.elastic.co/elasticsearch/elasticsearch:7.15.1
+```
+
+Subir Elasticsearch usando **docker-compose**
+
+```
+version: '3'
+services:
+  elasticsearch:
+    image: docker.elastic.co/elasticsearch/elasticsearch:7.3.1
+    container_name: elasticsearch
+    environment:
+      - node.name=ws-es-node
+      - discovery.type=single-node
+      - cluster.name=ws-es-data-cluster
+      - bootstrap.memory_lock=true
+      - "ES_JAVA_OPTS=-Xms1024m -Xmx1024m"
+      # - xpack.security.enabled='false'
+      # - xpack.monitoring.enabled='false'
+      # - xpack.watcher.enabled='false'
+      # - xpack.ml.enabled='false'
+      # - http.cors.enabled='true'
+      # - http.cors.allow-origin="*"
+      # - http.cors.allow-methods=OPTIONS, HEAD, GET, POST, PUT, DELETE
+      # - http.cors.allow-headers=X-Requested-With,X-Auth-Token,Content-Type, Content-Length
+      - logger.level=debug
+    ulimits:
+      memlock:
+        soft: -1
+        hard: -1
+    volumes:
+      - vibhuviesdata:/usr/share/elasticsearch/data
+    ports:
+      - 9200:9200
+      - 9300:9300
+    networks:
+      - esnet
+
+  elasticsearch_exporter:
+      image: quay.io/prometheuscommunity/elasticsearch-exporter:latest
+      command:
+      - '--es.uri=http://elasticsearch:9200'
+      restart: always
+      ports:
+      - "9114:9114"
+
+  kibana:
+    image: docker.elastic.co/kibana/kibana:7.3.1
+    container_name: kibana
+    environment:
+      SERVER_NAME: 127.0.0.1
+      ELASTICSEARCH_HOSTS: http://elasticsearch:9200
+      # XPACK_GRAPH_ENABLED: false
+      # XPACK_ML_ENABLED: false
+      # XPACK_REPORTING_ENABLED: false
+      # XPACK_SECURITY_ENABLED: false
+      # XPACK_WATCHER_ENABLED: false
+    ports:
+      - "5601:5601"
+    networks:
+      - esnet
+    depends_on:
+      - elasticsearch
+    restart: "unless-stopped"
+    
+volumes:
+  vibhuviesdata:
+    driver: local
+
+networks:
+  esnet:
 ```
 
 Chamadas a API REST do Elasticsearch
@@ -260,13 +330,13 @@ refresh, flush, warmer, filter_cache, id_cache,
 percolate, segments, fielddata, completion
 ```
 
-Kibana UI - Querys
+Rest UI
 
 ```
 # Criar um indice
 PUT example_index
 {
-	"settings": {
+    "settings": {
 		"index": {
 			"number_of_shards": 3,
 			"number_of_replicas": 2
@@ -276,8 +346,7 @@ PUT example_index
 
 
 # Criar documento no index
-
-PUT indexexample/_doc/1
+PUT example_index/_doc/1
 {
 "model": "Porshe",
 "year": 1972,
@@ -286,6 +355,7 @@ PUT indexexample/_doc/1
 "genres": ["Sporty", "Classic"]
 }
 ```
+
 ## Subir Elasticsearch via Helm
 
 **To deploy Elasticsearch with Kubernetes Helm, follow these steps:**
