@@ -358,31 +358,10 @@ PUT example_index/_doc/1
 
 ## Subir Elasticsearch via Helm
 
-**To deploy Elasticsearch with Kubernetes Helm, follow these steps:**
-
-1. Install Helm on your local machine and in Kubernetes cluster [(see documentation)](https://helm.sh/docs/intro/install/)
-
-2.  After installed, add Elastic Helm repository:
-
-```
+```bash
+# k3d cluster create elasticdemo --agents 3
 helm repo add elastic https://helm.elastic.co
-```
-
-3. Install Elastic by using the command:
-
-```
-helm install ${es_cluster_name} elastic/elasticsearch
-```
-
-For example:
-
-```
-helm install esarticle elastic/elasticsearch
-```
-
-4. Follow the deployment steps by checking pod deployment:
-
-```
+helm install elastic elastic/elasticsearch --set volumeClaimTemplate.resources.requests.storage=10Gi
 kubectl get pods --namespace=default -l app=elasticsearch-master -w
 ```
 
