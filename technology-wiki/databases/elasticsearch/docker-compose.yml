@@ -29,6 +29,15 @@ services:
       - 9300:9300
     networks:
       - esnet
+
+  elasticsearch_exporter:
+      image: quay.io/prometheuscommunity/elasticsearch-exporter:latest
+      command:
+      - '--es.uri=http://elasticsearch:9200'
+      restart: always
+      ports:
+      - "9114:9114"
+
   kibana:
     image: docker.elastic.co/kibana/kibana:7.3.1
     container_name: kibana
