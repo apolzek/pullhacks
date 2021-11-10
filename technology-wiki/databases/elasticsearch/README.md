@@ -1,3 +1,5 @@
+# Elasticsearch
+
 **Resumo sobre Elasticsearch**:
 
 - Motor de busca textual e fonética por relevância (PT-BR nativo)
@@ -75,7 +77,7 @@ Os principais arquivos de configuração são: *elasticsearch.yml* e *jvm.option
         node.ingest: true
         ```
 
-**Considerações:** 
+## Considerações
 
 - Um índice aponta para um ou mais **Shards**
 - Índice não existe fisicamente, ele apenas aponta
@@ -101,7 +103,7 @@ Os principais arquivos de configuração são: *elasticsearch.yml* e *jvm.option
 - O Master eleito escreve um 'relatório' com tudo que está acontecendo no cluster, inclusive mapeando todos os Documentos e Shards. O 'relatório' se chama **Cluster State**
 - O Cluster State é replicado em todos os outros Nós
 
-### Split-brain (troubleshooting
+### Split-brain (troubleshooting)
 
 - Quando existe mais um Master eleito
 - Ele cria duas visões diferentes e tem mais de um Nó escrevendo um Cluster State
@@ -129,10 +131,14 @@ Os principais arquivos de configuração são: *elasticsearch.yml* e *jvm.option
 
 ![https://media.giphy.com/media/4KEChFKWvCYOQBbngD/giphy.gif](https://media.giphy.com/media/4KEChFKWvCYOQBbngD/giphy.gif)
 
+Subir Elasticsearch usando Docker
+
 ```bash
 # Docker
 docker run -p 9200:9200 -p 9300:9300 -e "discovery.type=single-node" docker.elastic.co/elasticsearch/elasticsearch:7.15.1
 ```
+
+Chamadas a API REST do Elasticsearch
 
 ```bash
 # Listar nodes e recursos dos nodes
