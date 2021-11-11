@@ -29,11 +29,15 @@ Go                                | [access](https://portswigger.net/web-securit
 
 #### Troubleshooting
 
+Item                              | URL
+--------------------------------- | -------------
+Linux                             | [access](https://portswigger.net/web-security)
+
 #### Databases
 
 Item                              | URL
 --------------------------------- | -------------
-Elasticsearch                     | [access](https://portswigger.net/web-security)
+Elasticsearch                     | [access](https://github.com/apolzek/pullhacks/tree/main/technology-wiki/databases/elasticsearch)
 Redis                             | [access](https://portswigger.net/web-security)
 MongoDB                           | [access](https://portswigger.net/web-security)
 Postgres                          | [access](https://portswigger.net/web-security)
