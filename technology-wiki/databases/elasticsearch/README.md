@@ -376,3 +376,5 @@ kubectl get pods --namespace=default -l app=elasticsearch-master -w
 [https://addons.mozilla.org/en-US/firefox/addon/elasticvue/](https://addons.mozilla.org/en-US/firefox/addon/elasticvue/)
 
 [https://github.com/prometheus-community/elasticsearch_exporter](https://github.com/prometheus-community/elasticsearch_exporter)
+
+https://phoenixnap.com/kb/elasticsearch-kubernetes
