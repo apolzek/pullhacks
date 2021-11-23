@@ -1,6 +1,6 @@
 # Elasticsearch
 
-**Resumo sobre Elasticsearch**:
+**Resumão sobre Elasticsearch**:
 
 - Motor de busca textual e fonética por relevância (PT-BR nativo)
 - Construído em cima do **Apache Lucene**
@@ -16,8 +16,9 @@
 - Elasticsearch dispõem uma API REST
 - Possui bibliotecas para várias linguagens oficiais consumirem a API (Javascript, Java, C#, Python)
 - Pode-se usar o Kibana para exibir ou buscar os dados
+- Comumente utilizado junto com outras ferramentas da Elastic como Beats, Logstash e Kibana
 
-## Arquitetura: Elastic Stack
+## Elastic Stack
 
 ![image1](https://github.com/apolzek/pullhacks/blob/main/technology-wiki/databases/elasticsearch/.images/1.jpg)
 
@@ -77,14 +78,14 @@ Os principais arquivos de configuração são: *elasticsearch.yml* e *jvm.option
 
 ![image2](https://github.com/apolzek/pullhacks/blob/main/technology-wiki/databases/elasticsearch/.images/6.png)
 
-## Considerações
+## Shards, Índices e considerações
 
 - Um índice aponta para um ou mais **Shards**
 - Índice não existe fisicamente, ele apenas aponta
 - o Shard é uma instância do Lucene. O Apache Lucene é gerenciado pelo Elasticsearch
 - Um índice pode ter mais de um Shard
 - Cada Shard é um motor de busca em si mesmo. Ex: Vendar possui 2 Shards com vários documentos. Quando se pergunta ao índice algum documento(query), o índice pergunta individualmente para cada Shard e ele une a informação no final
-- Os clients não acessar os Shards diretamente e sim os Índices
+- Os clients não podem acessar os Shards diretamente e sim os Índices
 - O dado está no Shard e não no Índice, ou seja, o índice é lógico
 - Shard0 e Replica0 nunca vão estar no mesmo Nó, para ter um backup dos dados
 - **Recomendação**: cada Shard deve possuir entre 40GB e 60GB de dados. Ou seja, o índice poderá armazenar até 120GB de dados. Caso aumente poderá ter perda de performance
@@ -92,7 +93,7 @@ Os principais arquivos de configuração são: *elasticsearch.yml* e *jvm.option
 - A indexação é sempre feito no Shard primeiro e depois é criado a Réplica
 - O Elasticsearch pode controlar o ID dos documentos adicionados
 - Se um nó cair o outro assume automaticamente
-    
+
 ![image3](https://github.com/apolzek/pullhacks/blob/main/technology-wiki/databases/elasticsearch/.images/5.png)
 
 ### Master Nodes
@@ -115,7 +116,7 @@ Os principais arquivos de configuração são: *elasticsearch.yml* e *jvm.option
 ### Cluster Yellow
 
 - Pode acontecer por vário motivos, entre eles quando o Índice cria o Shard e a Réplica no mesmo nó. Ou seja se você tiver apenas 1 Node isso vai acontecer
-    
+
 ## Considerações Finais
 
 - Não tentar fazer relacionamentos no Elasticsearch. O índice pode trazer vários dados que em um banco de Dados Relacional poderia estar dividido entre várias tabelas
@@ -123,22 +124,20 @@ Os principais arquivos de configuração são: *elasticsearch.yml* e *jvm.option
 - Desnormalize os dados e crie Índices Fato
 - Ideal nosso Nó trabalhar com SSD(mais performance)
 
-
 ![image4](https://github.com/apolzek/pullhacks/blob/main/technology-wiki/databases/elasticsearch/.images/4.png)
-
 
 ## Hands-on
 
 ![https://media.giphy.com/media/4KEChFKWvCYOQBbngD/giphy.gif](https://media.giphy.com/media/4KEChFKWvCYOQBbngD/giphy.gif)
 
-Subir Elasticsearch usando **Docker**
+### Subir Elasticsearch usando **Docker**
 
 ```bash
 # Docker
 docker run -p 9200:9200 -p 9300:9300 -e "discovery.type=single-node" docker.elastic.co/elasticsearch/elasticsearch:7.15.1
 ```
 
-Subir Elasticsearch usando **docker-compose**
+### Subir Elasticsearch usando **docker-compose**
 
 ```
 version: '3'
@@ -208,7 +207,22 @@ networks:
   esnet:
 ```
 
-Chamadas a API REST do Elasticsearch
+### Subir Elasticsearch via Helm
+
+```bash
+# k3d cluster create elasticdemo --agents 3
+helm repo add elastic https://helm.elastic.co
+helm install elastic elastic/elasticsearch --set volumeClaimTemplate.resources.requests.storage=10Gi
+kubectl get pods --namespace=default -l app=elasticsearch-master -w
+```
+
+### Subir Elasticsearch na AWS
+
+[aws-sre-elasticsearch-cluster](https://github.com/production-ready-toolkit/aws-sre-elasticsearch-cluster)
+[How to Launch AWS Elasticsearch using Terraform in Amazon Account](https://automateinfra.com/2021/05/03/how-to-launch-aws-elasticsearch-using-terraform-in-amazon-account/)
+
+
+### Chamadas a API REST do Elasticsearch
 
 ```bash
 # Health cluster
@@ -322,15 +336,13 @@ O formato geral da consulta `_stats` é:
 /{index}/_stats
 /{index}/_stats/{metric}
 
-
 # Where the metrics are:
-
 indices, docs, store, indexing, search, get, merge,
 refresh, flush, warmer, filter_cache, id_cache,
 percolate, segments, fielddata, completion
 ```
 
-Rest UI
+### Rest UI
 
 ```
 # Criar um indice
@@ -356,17 +368,6 @@ PUT example_index/_doc/1
 }
 ```
 
-## Subir Elasticsearch via Helm
-
-```bash
-# k3d cluster create elasticdemo --agents 3
-helm repo add elastic https://helm.elastic.co
-helm install elastic elastic/elasticsearch --set volumeClaimTemplate.resources.requests.storage=10Gi
-kubectl get pods --namespace=default -l app=elasticsearch-master -w
-```
-
-
-
 # Referências
 
 [Elasticsearch - Definições, Arquitetura e Boas Práticas](https://www.youtube.com/watch?v=-fAq1B81nRI)
@@ -377,4 +378,4 @@ kubectl get pods --namespace=default -l app=elasticsearch-master -w
 
 [https://github.com/prometheus-community/elasticsearch_exporter](https://github.com/prometheus-community/elasticsearch_exporter)
 
-https://phoenixnap.com/kb/elasticsearch-kubernetes
+[https://phoenixnap.com/kb/elasticsearch-kubernetes](https://phoenixnap.com/kb/elasticsearch-kubernetes)
