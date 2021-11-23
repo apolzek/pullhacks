@@ -19,9 +19,7 @@
 
 ## Arquitetura: Elastic Stack
 
-![image_01_002.jpg](https://s3-us-west-2.amazonaws.com/secure.notion-static.com/9a8a6609-8a2d-4a80-ab12-0a8d8e4290c6/image_01_002.jpg)
-
-![0*O6aGxGkIlazsHi-p.png](https://s3-us-west-2.amazonaws.com/secure.notion-static.com/dda48e81-0932-408c-826d-deda9a291050/0O6aGxGkIlazsHi-p.png)
+![image1](https://github.com/apolzek/pullhacks/blob/main/technology-wiki/databases/elasticsearch/.images/1.jpg)
 
 ## Configurações
 
@@ -77,6 +75,8 @@ Os principais arquivos de configuração são: *elasticsearch.yml* e *jvm.option
         node.ingest: true
         ```
 
+![image2](https://github.com/apolzek/pullhacks/blob/main/technology-wiki/databases/elasticsearch/.images/6.png)
+
 ## Considerações
 
 - Um índice aponta para um ou mais **Shards**
@@ -93,7 +93,7 @@ Os principais arquivos de configuração são: *elasticsearch.yml* e *jvm.option
 - O Elasticsearch pode controlar o ID dos documentos adicionados
 - Se um nó cair o outro assume automaticamente
     
-![Screenshot_20211018_201236.png](https://s3-us-west-2.amazonaws.com/secure.notion-static.com/9e336ca0-79ea-4d1e-b122-4b56e5a9c6c4/Screenshot_20211018_201236.png)
+![image3](https://github.com/apolzek/pullhacks/blob/main/technology-wiki/databases/elasticsearch/.images/5.png)
 
 ### Master Nodes
 
@@ -124,7 +124,7 @@ Os principais arquivos de configuração são: *elasticsearch.yml* e *jvm.option
 - Ideal nosso Nó trabalhar com SSD(mais performance)
 
 
-![1*0gUMUCd81Oxu-npn-NZcTw.png](https://s3-us-west-2.amazonaws.com/secure.notion-static.com/ee1d7bdf-f971-4000-9d5e-b23c5a517683/10gUMUCd81Oxu-npn-NZcTw.png)
+![image4](https://github.com/apolzek/pullhacks/blob/main/technology-wiki/databases/elasticsearch/.images/4.png)
 
 
 ## Hands-on
