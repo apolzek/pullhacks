@@ -219,6 +219,7 @@ kubectl get pods --namespace=default -l app=elasticsearch-master -w
 ### Subir Elasticsearch na AWS
 
 [aws-sre-elasticsearch-cluster](https://github.com/production-ready-toolkit/aws-sre-elasticsearch-cluster)
+
 [How to Launch AWS Elasticsearch using Terraform in Amazon Account](https://automateinfra.com/2021/05/03/how-to-launch-aws-elasticsearch-using-terraform-in-amazon-account/)
 
 

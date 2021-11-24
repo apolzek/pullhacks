@@ -1,10 +1,8 @@
-# :trollface:
+# pullhacks
 
-## :bookmark: Notion
+Some hacks to make the job easier :trollface:
 
-### Technology Wiki
-
-> Technology Knowledge Base
+![https://media.giphy.com/media/ZZeZA5NeC43870bG9U/giphy.gif](https://media.giphy.com/media/ZZeZA5NeC43870bG9U/giphy.gif)
 
 #### DevOps & Infrastructure
 
@@ -23,42 +21,75 @@ Vault                             | [access](https://portswigger.net/web-securit
 Item                              | URL
 --------------------------------- | -------------
 Design Patterns                   | [access](https://portswigger.net/web-security)
-ShellScript                       | [access](https://portswigger.net/web-security)
-Python                            | [access](https://portswigger.net/web-security)
 Go                                | [access](https://portswigger.net/web-security)
-
-#### Troubleshooting
-
-Item                              | URL
---------------------------------- | -------------
-Linux                             | [access](https://portswigger.net/web-security)
+Python                            | [access](https://portswigger.net/web-security)
+ShellScript                       | [access](https://portswigger.net/web-security)
+.NET                              | [access](https://portswigger.net/web-security)
 
 #### Databases
 
 Item                              | URL
 --------------------------------- | -------------
-Elasticsearch                     | [access](https://github.com/apolzek/pullhacks/tree/main/technology-wiki/databases/elasticsearch)
-Redis                             | [access](https://portswigger.net/web-security)
+Elasticsearch :heavy_check_mark:  | [access](https://github.com/apolzek/pullhacks/tree/main/technology-wiki/databases/elasticsearch)
 MongoDB                           | [access](https://portswigger.net/web-security)
 Postgres                          | [access](https://portswigger.net/web-security)
+Redis                             | [access](https://portswigger.net/web-security)
 
 #### CI/CD & Pipeline
 
 Item                              | URL
 --------------------------------- | -------------
-Jenkins                           | [access](https://portswigger.net/web-security)
 GoCD                              | [access](https://portswigger.net/web-security)
 GitlabCI                          | [access](https://portswigger.net/web-security)
 Github actions                    | [access](https://portswigger.net/web-security)
-
+Jenkins                           | [access](https://portswigger.net/web-security)
 
 ## :bookmark: Tools
 
 ### k3d
 
+```
+https://github.com/scaamanho/k3d-cluster
+
+```
+
 ### curl
 
+```
+curl -w "@curl-format.txt" -o /dev/null -s "http://wordpress.com/"
+```
+
+save: curl-format.txt
+
+```
+
+     time_namelookup:  %{time_namelookup}s\n
+        time_connect:  %{time_connect}s\n
+     time_appconnect:  %{time_appconnect}s\n
+    time_pretransfer:  %{time_pretransfer}s\n
+       time_redirect:  %{time_redirect}s\n
+  time_starttransfer:  %{time_starttransfer}s\n
+                     ----------\n
+          time_total:  %{time_total}s\n
+```
+
 ### httpie
+
+```
+https://httpie.io/
+https://httpie.io/docs
+
+
+http PUT pie.dev/put X-API-Token:123 name=John
+http -f POST pie.dev/post hello=World
+http -v pie.dev/get
+http --offline pie.dev/post hello=offline
+http -a USERNAME POST https://api.github.com/repos/httpie/httpie/issues/83/comments body='HTTPie is awesome! :heart:'
+http pie.dev/post < files/data.json
+http --download pie.dev/image/png
+http --session=logged-in -a username:password pie.dev/get API-Key:123
+http https://api.github.com/search/repositories q==httpie per_page==1
+```
 
 ### k6s
 
