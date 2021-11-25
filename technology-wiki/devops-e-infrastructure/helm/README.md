@@ -1,5 +1,7 @@
 # Helm
 
+## Resumão
+
 * Comumente usado para empacotamento de aplicações kubernetes
 * Surgiu em 2015, empresa criadora foi adquirida pela Microsoft
 * Projeto graduado na CNCF
@@ -18,6 +20,7 @@
 
 * É possível adicionar um repositório remoto do helm com o comando *helm repo add <name> <url>*
 * {{ .Release.Name }} 
+
 ## Comandos
 
 ```
@@ -45,8 +48,11 @@ helm install <example> ./chart --dry-run --debug
 ## Referências
 
 https://github.com/helm/helm
+
 https://helm.sh/docs/
 
 https://www.youtube.com/watch?v=LuBvYTqN1cw
+
 https://www.youtube.com/watch?v=sItjxM3hYrE
+
 https://www.youtube.com/watch?v=47PBtVmQKRU
