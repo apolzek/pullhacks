@@ -30,7 +30,7 @@ Jenkins                                     |                               | [a
 k3d                                         |                               | [access](https://portswigger.net/web-security)
 Github actions                              |                               | [access](https://portswigger.net/web-security)
 Jenkins                                     |                               | [access](https://portswigger.net/web-security)
-tcpdump                                     | network                       | [access](https://portswigger.net/web-security)
+tcpdump                                     | network                       | [access](https://github.com/apolzek/pullhacks/tree/main/tools/tcpdump)
 #### Best Articles
 
 Title                             | Tags                         | URL
