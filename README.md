@@ -28,9 +28,11 @@ GitlabCI                                    |                               | [a
 Github actions                              |                               | [access](https://portswigger.net/web-security)
 Jenkins                                     |                               | [access](https://portswigger.net/web-security)
 k3d                                         |                               | [access](https://portswigger.net/web-security)
+kind                                        |                               | [access](https://portswigger.net/web-security)
 Github actions                              |                               | [access](https://portswigger.net/web-security)
 Jenkins                                     |                               | [access](https://portswigger.net/web-security)
 tcpdump                                     | network                       | [access](https://github.com/apolzek/pullhacks/tree/main/tools/tcpdump)
+
 #### Best Articles
 
 Title                             | Tags                         | URL
