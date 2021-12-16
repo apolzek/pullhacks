@@ -31,7 +31,7 @@ k3d                                         |                               | [a
 kind                                        |                               | [access](https://portswigger.net/web-security)
 Github actions                              |                               | [access](https://portswigger.net/web-security)
 Jenkins                                     |                               | [access](https://portswigger.net/web-security)
-tcpdump                                     | network                       | [access](https://github.com/apolzek/pullhacks/tree/main/tools/tcpdump)
+network-pack(ss, netstat, tcpdump, nmap ..) | network                       | [access](https://github.com/apolzek/pullhacks/tree/main/tools/tcpdump)
 
 #### Best Articles
 
