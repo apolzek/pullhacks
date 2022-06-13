@@ -1,7 +1,0 @@
-version: '3'
-services:
-  ubuntu:
-    image: bash:latest
-    command: tail -F anything
-    volumes:
-      - ./.shared_docker:/tmp 
