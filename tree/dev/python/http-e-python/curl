@@ -1,0 +1,5 @@
+curl --header "X-MyHeader: 123 http://localhost:5000
+curl --header "X-MyHeader: 123" --header "X-User: 1337" http://localhost:8080
+
+curl -A "Elon Musk" --header "X-MyHeader: 123" --header "Hi: friend" http://localhost:8080
+curl -H "User-Agent: Musk" --header "X-MyHeader: 123" --header "Hi: friend" http://localhost:8080

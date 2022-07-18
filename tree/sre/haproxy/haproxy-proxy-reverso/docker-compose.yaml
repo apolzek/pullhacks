@@ -1,0 +1,33 @@
+version: '3'
+
+services:
+
+  nginx-blue:
+    image: nginx:latest
+    ports: 
+      - 8080:80
+    volumes:
+      - $PWD/nginx-blue/index.html:/usr/share/nginx/html/index.html
+
+  nginx-red:
+    image: nginx:latest
+    ports: 
+      - 8081:80
+    volumes:
+      - $PWD/nginx-red/index.html:/usr/share/nginx/html/index.html
+
+  nginx-pink:
+    image: nginx:latest
+    volumes:
+      - $PWD/nginx-pink/index.html:/usr/share/nginx/html/index.html
+
+  nginx-internal:
+    image: nginx:latest
+    
+  haproxy:
+    image: haproxy:2.3
+    volumes:
+      - ./haproxy/haproxy.cfg:/usr/local/etc/haproxy/haproxy.cfg
+    ports:
+      - 80:80
+      - 1234:1234

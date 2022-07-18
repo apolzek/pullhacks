@@ -1,0 +1,23 @@
+apiVersion: v1
+kind: Pod
+metadata:
+  name: "{{ include "basic.fullname" . }}-test-connection"
+  labels:
+    {{- include "basic.labels" . | nindent 4 }}
+    {{- include "test.function" . | nindent 4 }}
+  annotations:
+    "helm.sh/hook": test
+spec:
+  containers:
+    - name: wget
+      image: busybox
+      command: ['wget']
+      args: ['{{ include "basic.fullname" . }}:{{ .Values.service.port }}']
+  restartPolicy: Never
+
+
+{{- /*
+  App files are configmaps created by cloud-app-play-files chart.
+  App files contains files specific for app and environment.
+  App name should be same as in deployment of cloud-app-play-files chart.
+*/ -}} 
