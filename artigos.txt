@@ -1,0 +1,8 @@
+https://netflixtechblog.com/how-netflix-uses-ebpf-flow-logs-at-scale-for-network-insight-e3ea997dca96
+https://insidebigdata.com/2022/04/07/observability-is-a-data-analytics-problem/
+https://horovits.medium.com/sre-revisited-slo-in-the-age-of-microservices-30c1ff80cb6a
+https://pawan-bhadauria.medium.com/open-telemetry-democratises-access-to-observability-data-will-enable-massive-innovation-82c4f15fd72c
+https://medium.com/containers-101/using-gitops-multiple-argo-instances-and-environments-with-argo-cd-at-scale-e6b19c86be36
+https://learningdaily.dev/tech-trends-to-know-for-2022-33b748136e2b
+https://medium.com/marionete/how-to-test-your-terraform-code-432f3be95d48
+https://medium.com/@codesparrow_96165/top-8-best-open-source-development-tools-33714b53b059
